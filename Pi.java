@@ -4,6 +4,7 @@ public class Pi {
     public static void main(String[] args) {
         int threads = -1;
         int iterations = -1;
+        long timestamp = Date.getTime();
 
         try {
             threads = Integer.parseInt(args[0]);
@@ -56,6 +57,10 @@ public class Pi {
         System.out.println("Inside\t= " + totalInside);
         System.out.println("Ratio\t= " + ratio);
         System.out.println("Pi\t= " + ratio * 4);
+
+        long newTimestamp = Date.getTime();
+        long deltaTime = newTimestamp - timestamp;
+        System.out.println("\nTime\t= " + deltaTime + " ms");
     }
 
     private static int calculateInside(int iterations) {
