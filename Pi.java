@@ -2,8 +2,20 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Pi {
     public static void main(String[] args) {
-        int threads = 2;
-        int iterations = 1000000000;
+        int threads = -1;
+        int iterations = -1;
+
+        try {
+            threads = Integer.parseInt(args[0]);
+            iterations = Integer.parseInt(args[1]);
+            if (iterations < 1 || threads < 1) {
+                throw new Exception();
+            }
+        } catch (Exception ex) {
+            System.out.println("Arguments should be two ints, <# threads> <# iterations>");
+            System.exit(1);
+        }
+
         final int iterationsPerThread = iterations / threads;
 
         /* Arrays to hold the number of "dart throws inside the circle"
